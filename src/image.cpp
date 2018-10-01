@@ -3,7 +3,7 @@ Image::Image(cv::Mat src)
 {
     cv_to_image(src);
 };
-Image::Image(char *filename)
+Image::Image(char* filename)
 {
     cv::Mat src=cv::imread(filename);
     cv_to_image(src);
@@ -36,9 +36,9 @@ cv::Mat Image::imgae_to_cv(int channels )
     return det;
 }
 
-void Image::show()
+void Image::show(char * Winname)
 {
-    cv::imshow("",imgae_to_cv(c));
+    cv::imshow(Winname,imgae_to_cv(c));
     cv::waitKey(0);
 }  
 Image Image::img2gray()
@@ -93,13 +93,43 @@ void Image::draw_box(point pt1,point pt2 ,color col,int th)
 
 void Image::draw_x_y()
 {   
-    draw_box(point(20,20),point(w-20,20+3),color(0,0,0),0);
-    draw_box(point(20,20),point(20+3,h-20),color(0,0,0),0);
+    draw_box(point(30,30),point(w-30,30+3),color(0,0,0),0);
+    draw_box(point(30,30),point(30+3,h-30),color(0,0,0),0);
+    for(int i=0 ; i<= 260 ;i+=20) 
+        draw_number(i,point(h-30,20+3*i),1);
+    //draw_number(1,point(30,30-10),1);
 };
-
+void Image::draw_number(int number ,point adress,int th)
+{   
+    int dis=0;
+    int pre_w=0;
+    do{
+        int ch=number%10+48;
+        number=number/10;
+        Image alpha=load_alpha(ch,th);
+        int alpha_h=alpha.h,alpha_w=alpha.w,alpha_step=alpha.step;
+        for (int i = 0;i<alpha_h;i++)
+        for (int j = 0;j<alpha_w;j++)
+            set_pixel(adress.x+i,adress.y+j-dis*pre_w,alpha.get_pixel(i,j));
+        dis++;
+        pre_w=alpha_w;
+    }while(number!=0);
+}
 Image Image::load_alpha(char ch,int th)
 {
-    
-
-
+    char alpha_[20]={0};
+    sprintf(alpha_,"./labels/%d_%d.png",ch,th);
+    Image alpha(alpha_);
+    return alpha;
 };
+void Image::polt(vector<int> hist)
+{   
+    draw_x_y();
+    int max=0;
+    for (vector<int>::iterator iter=hist.begin();iter!=hist.end();++iter)
+        max=MAX(max,*iter);
+    for(int i=0;i<256 ;i++)
+    {
+        draw_box(point(30+i*3,30),point(30+3+i*3,int(hist[i]*(h-30)/max)),color(0,0,255),0);
+    }
+}

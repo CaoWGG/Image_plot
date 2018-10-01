@@ -1,35 +1,29 @@
-#include <string>
 #include <iostream>
 #include "image.hpp"
-using namespace std;
-using namespace cv;
+vector<int> hist_(Image gray)
+{
+    vector<int> hist(256,0);
+    int w=gray.w,h=gray.h,c=gray.c;
+    for(int i =0 ;i < w*h*c ;i++)
+    {
+        hist[int(*(gray.data+i))]+=1;
+    }
+    return hist;
+}
 int main()
 {   
-    
-    Image plot(512,1024  ,3);
-    plot.show();
-    plot.draw_x_y();
-    plot.show();
-    
-   /*
-    Mat src= imread("lena.png");
-    Mat det;
-    resize(src,det,Size(512,1024));
-    cout << det.cols << endl;
-    cout << det.rows << endl;
-    cout << det.channels() << endl;
-    cout << det.size() << endl;
-    cout << det.step << endl;
-    imshow("det",det);
-    waitKey(0);
-    /*
-    Image img("lena.png");
-    img.show();
-    Image gray=img.img2gray();
-    gray.show();
-    */
-    //gray.show();
+
+    Image plot(512,900  ,3);
+    plot.show("plot");
+    Image lena_bgr("lena.png");
+    Image lena_gray=lena_bgr.img2gray();
+    lena_bgr.show("lena_bgr");
+    lena_gray.show("lena_gray");
+    vector<int> hist=hist_(lena_gray);
+    plot.polt(hist);
+    plot.show("plot");
     return 0;
+
 }
 
 

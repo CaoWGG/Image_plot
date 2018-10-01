@@ -1,6 +1,9 @@
 #ifndef AFX_H
 #define AFX_H
 #include <opencv2/opencv.hpp>
+#include <vector>
+using namespace std;
+using namespace cv;
 typedef unsigned char uchar;
 class color 
 {   public:
