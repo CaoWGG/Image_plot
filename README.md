@@ -7,10 +7,10 @@
 -------------------------
 ![avatar](./img/plot.png)
 -------------------------
-![avatar](./img/thresh 69.jpg)
+![avatar](./img/thresh69.jpg)
 -------------------------
-![avatar](./img/thresh 98.jpg)
+![avatar](./img/thresh98.jpg)
 -------------------------
-![avatar](./img/thresh 120.jpg)
+![avatar](./img/thresh120.jpg)
 -------------------------
-![avatar](./img/thresh 154.jpg)
+![avatar](./img/thresh154.jpg)

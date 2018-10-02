@@ -18,7 +18,7 @@ int main()
     for(vector<int>::iterator iter=feng.begin();iter!=feng.end();iter++)
     {
         char plot_name[20];
-        sprintf(plot_name,"thresh %d",*iter);
+        sprintf(plot_name,"thresh%d",*iter);
         Image thresh_img=lena_gray.gray_thresholding(*iter);
         thresh_img.show(plot_name);
     }
