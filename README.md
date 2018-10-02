@@ -5,7 +5,7 @@
 -------------------------
 ![avatar](./img/gray_hist.png)
 -------------------------
-![avatar](./img/plot.png)
+![avatar](./img/plot.jpg)
 -------------------------
 ![avatar](./img/thresh69.jpg)
 -------------------------
