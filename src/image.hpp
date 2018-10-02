@@ -22,6 +22,10 @@ class Image
         Image img2gray();
         Image load_alpha(char ch,int th);
         void draw_number(int number ,point adress,int th);
-        void polt(vector<int> hist);
+        void polt(vector<int> hist, vector<int> feng);
+        Image gray_thresholding(int thresh);
 };
+vector<int> findpeaks(vector<int> hist,int mindistance);
+void filter(vector<int> &hist);
+vector<int> hist_(Image gray);
 #endif

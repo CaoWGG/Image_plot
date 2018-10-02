@@ -4,6 +4,8 @@
 #include <vector>
 using namespace std;
 using namespace cv;
+#define Threshold_1 8  
+#define Threshold_2 20  
 typedef unsigned char uchar;
 class color 
 {   public:
